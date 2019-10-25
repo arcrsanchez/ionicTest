@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { LibraryService } from '../library.service';
+import { Book } from '../book.model';
 
 @Component({
   selector: 'app-book-detail',
@@ -7,9 +10,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BookDetailPage implements OnInit {
 
-  constructor() { }
+  book: Book;
+  constructor(private activatedRoute: ActivatedRoute,
+              private libraryService: LibraryService) { }
 
   ngOnInit() {
+    this.activatedRoute.paramMap.subscribe(paramMap => {
+      const bookId = paramMap.get('bookId');
+      this.book = this.libraryService.getBook(bookId);
+    });
   }
 
 }

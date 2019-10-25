@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Book } from './book.model';
+import { LibraryService } from './library.service';
 
 @Component({
   selector: 'app-library',
@@ -8,27 +9,11 @@ import { Book } from './book.model';
 })
 export class LibraryPage implements OnInit {
 
-  books: Book[] = [
-    {
-      id : 'b1',
-      title : 'El clan del oso cavernario',
-      subtitle : 'Los hijos de la Tierra',
-      author : 'Jean Marie Auell',
-      summary : 'Summary',
-      image : '../../assets/img/cavernario.jpeg'
-    },
-    {
-      id : 'b1',
-      title : 'El valle de los caballos',
-      subtitle : 'Los hijos de la Tierra',
-      author : 'Jean Marie Auell',
-      summary : 'Summary',
-      image : '../../assets/img/valle.jpeg'
-    },
-  ];
-  constructor() { }
+  books: Book[];
+  constructor(private libraryService: LibraryService) { }
 
   ngOnInit() {
+    this.books = this.libraryService.getAllBooks();
   }
 
 }
