@@ -7,7 +7,7 @@
 <ion-content>
   <ion-list>
     <ion-item *ngFor="let book of books">
-      <ion-avatar>
+      <ion-avatar slot="start">
         <ion-img [src]="book.image"></ion-img>
       </ion-avatar>
       {{ book.title }}
